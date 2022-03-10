@@ -7,7 +7,17 @@ use App\NsControllers\Genericos\Genericos;
 class EmissaoSincronaNFe{
     public function emitirNFeSincrono($conteudo, $tpConteudo, $CNPJ, $tpAmb, $tpDown, $caminho){
         $genericos = new Genericos;
+        
         $retorno = [];
+        $retorno['emissaoStatus'] = '';
+        $retorno['consultaStatus'] = '';
+        $retorno['nsNRec'] = '';
+        $retorno['cStat'] = '';
+        $retorno['xMotivo'] = '';
+        $retorno['chNFe'] = '';
+        $retorno['nProt'] = '';
+        $retorno['downloadStatus'] = '';
+        $retorno['erros'] = '';
 
         $genericos->gravarLinhaLog('[EMISSAO_SINCRONA_NFE_INICIO]');
 
@@ -15,8 +25,9 @@ class EmissaoSincronaNFe{
         $emissaoRetorno = $emissao->emitir($conteudo, $tpConteudo);
         $emissaoStatus = $emissaoRetorno['status'];
 
+        $retorno['emissaoStatus'] = $emissaoStatus;
+
         if ($emissaoStatus == 200){
-            $retorno['emissaoStatus'] = $emissaoStatus;
             $consStatusProc = new ConsultaStatusNFe;
             $consStatusProc->CNPJ = $CNPJ;
             $consStatusProc->nsNRec = $emissaoRetorno['nsNRec'];
@@ -43,19 +54,20 @@ class EmissaoSincronaNFe{
                     $downloadStatus = $downloadRetorno['status'];
                     
                     $retorno['chNFe'] = $consultaRetorno['chNFe'];
+                    $retorno['nProt'] = $consultaRetorno['nProt'];
                     $retorno['downloadStatus'] = $downloadStatus;
 
                     if ($downloadStatus != 200){
-                        $retorno['downloadRetorno'] = json_decode($downloadRetorno);
+                        $retorno['erros']['downloadRetorno'] = json_decode($downloadRetorno);
                     }
                 }
             }
             else {
-                $retorno['consultaRetorno'] = json_decode($consultaRetorno);
+                $retorno['erros']['consultaRetorno'] = json_decode($consultaRetorno);
             }
         }
         else {
-            $retorno['emissaoRetorno'] = json_decode($emissaoRetorno);
+            $retorno['erros']['emissaoRetorno'] = json_decode($emissaoRetorno);
         }
 
         $genericos->gravarLinhaLog('[RETORNO_EMISSAO_SINCRONA]');

@@ -18,7 +18,7 @@ class Genericos{
     }
 
     public function gravarLinhaLog($msg){
-        $dir = '../../../log/';
+        $dir = '../log/';
 
         if (!is_dir($dir)){
             mkdir($dir, 0777, true);

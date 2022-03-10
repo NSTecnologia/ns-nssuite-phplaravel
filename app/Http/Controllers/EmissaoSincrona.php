@@ -26,7 +26,7 @@ use App\NsControllers\NFe\Prod;
 use App\NsControllers\NFe\Total;
 use App\NsControllers\NFe\Transp;
 use Illuminate\Http\Request;
-include ('C:/projetos/LaravelTeste/laravel/app/NsControllers/NFe/NFeJSON.php');
+include ('../app/NsControllers/NFe/NFeJSON.php');
 
 class EmissaoSincrona{
     public function enviar(Request $request){

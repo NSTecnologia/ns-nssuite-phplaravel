@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('emissao_sincrona', 'emissao_sincrona');
 Route::view('cancelamento', 'cancelar');
+Route::view('email', "enviar_por_email");
 
 Route::get('emitir_sincrono', 'App\Http\Controllers\EmissaoSincrona@enviar');
 Route::get('cancelar', 'App\Http\Controllers\Cancelar@enviar');
+Route::get('enviar_email', 'App\Http\Controllers\EnviarEmail@enviar');

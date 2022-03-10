@@ -14,7 +14,7 @@ class Cancelar{
                 return $consulta->cancelarEsalvar($conteudo, 'Caminho para salvar', 'XP');
             }
             else{
-                return $consulta->cancelar($conteudo);
+                echo $consulta->cancelar($conteudo);
             }
         }
     }

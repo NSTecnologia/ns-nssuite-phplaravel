@@ -5,7 +5,7 @@ namespace App\NsControllers\NFe\Emissao;
 use App\NsControllers\Genericos\Genericos;
 
 class DownloadNFe{
-    public function criarRequisicao($chNFe, $printCEAN = null, $tpAmb = null, $tpDown, $obsCanhoto = null){
+    public function criarRequisicao($chNFe, $tpDown, $printCEAN = null, $tpAmb = null, $obsCanhoto = null){
         $campos = get_defined_vars();
         $req = new DownloadNFe;
         foreach ($campos as $campo => $valor){

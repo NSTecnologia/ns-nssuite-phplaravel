@@ -5,7 +5,7 @@ namespace App\NsControllers\NFe\Eventos;
 use App\NsControllers\Genericos\Genericos;
 
 class ConsultaSitNFe{
-    public function criarRequisicao($licencaCnpj = null, $chNFe, $tpAmb, $versao = null){
+    public function criarRequisicao($chNFe, $tpAmb, $licencaCnpj = null, $versao = null){
         $campos = get_defined_vars();
         $req = new ConsultaSitNFe;
         foreach ($campos as $campo => $valor){

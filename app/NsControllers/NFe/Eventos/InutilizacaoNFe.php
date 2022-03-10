@@ -5,7 +5,7 @@ namespace App\NsControllers\NFe\Eventos;
 use App\NsControllers\Genericos\Genericos;
 
 class InutilizacaoNFe{
-    public function criarRequisicao($cUF = null, $tpAmb = null, $ano, $CNPJ = null, $serie, $nNFIni, $nNFFin, $xJust){
+    public function criarRequisicao($ano, $serie, $nNFIni, $nNFFin, $xJust, $CNPJ = null, $cUF = null, $tpAmb = null){
         $campos = get_defined_vars();
         $req = new InutilizacaoNFe;
         foreach ($campos as $campo => $valor){
