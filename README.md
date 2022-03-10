@@ -71,7 +71,7 @@ Se houver algum erro, será retornado um campo contendo o retorno do método aon
 Confira um código para tratamento do retorno, no qual pegará as informações dispostas no JSON de Retorno disponibilizado:
 
 
-    $resposta = $NSSuite->emitirNFeSincrono($conteudo, $tpConteudo, $cnpjEmit, $tpDown, $tpAmb, $caminho, $exibeNaTela);
+    $retorno = $emissao->emitirNFeSincrono($conteudo, $tpConteudo, $cnpjEmit, $tpDown, $tpAmb, $caminho, $exibeNaTela);
 
     $emissaoStatus = $resposta['emissaoStatus'];
     $consultaStatus = $resposta['consultaStatus'];
