@@ -1,17 +1,28 @@
 <?php
 
-namespace App\NsControllers\NFe\Emissao;
+namespace App\NsControllers\CTe\Emissao;
 
 use App\NsControllers\Genericos\Genericos;
 
-class EmissaoNFe{
-    public function emitir($conteudo, $tpConteudo){
+class EmissaoCTe{
+    public function emitir($conteudo, $tpConteudo, $modelo){
         $genericos = new Genericos;
-        $url = 'https://nfe.ns.eti.br/nfe/issue';
+        $url = '';
 
-        $genericos->gravarLinhaLog('[EMISSAO_NFE_INICIO]');
+        $genericos->gravarLinhaLog('[EMISSAO_CTE_INICIO]');
         $genericos->gravarLinhaLog('[DADOS_ENVIADOS]');
         $genericos->gravarLinhaLog($conteudo);
+
+        switch($modelo == 57){
+            case 57:
+                $url = 'https://cte.ns.eti.br/cte/issue';
+                break;
+            case 67:
+                $url = 'https://cte.ns.eti.br/cte/issueos';
+                break;
+            default:
+                $ret = 'modelo invalido';
+        }
 
         switch($tpConteudo){
             case 'json':
@@ -30,7 +41,7 @@ class EmissaoNFe{
 
         $genericos->gravarLinhaLog('[DADOS_RETORNADOS]');
         $genericos->gravarLinhaLog($ret);
-        $genericos->gravarLinhaLog('[EMISSAO_NFE_FIM]');
+        $genericos->gravarLinhaLog('[EMISSAO_CTE_FIM]');
 
         return $ret;
     }

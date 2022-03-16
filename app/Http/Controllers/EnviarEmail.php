@@ -10,7 +10,6 @@ class EnviarEmail{
         if ($request->input('modelo') == 55){
             $email = new EnvioEmailNFe;
             $conteudo = $email->criarRequisicao('Chave NFe', 'tpAmb', 'enviaEmailDoc', ['email1@email.com', 'email2@email.com']);
-            
             return $email->enviarPorEmail($conteudo);
         }
     }

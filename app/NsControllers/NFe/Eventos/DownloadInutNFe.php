@@ -8,7 +8,7 @@ class DownloadInutNFe{
     public $chave;
     public $tpAmb;
     public $tpDown;
-    public function criarRequisicao($chave, $tpAmb = null, $tpDown = null){
+    public function criarRequisicao($chave, $tpAmb, $tpDown = null){
         $campos = get_defined_vars();
         $req = new DownloadInutNFe;
         foreach ($campos as $campo => $valor){

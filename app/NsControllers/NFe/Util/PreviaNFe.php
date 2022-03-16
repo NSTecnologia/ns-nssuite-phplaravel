@@ -7,22 +7,25 @@ use App\NsControllers\Genericos\Genericos;
 class PreviaNFe{
     public function gerarPrevia($conteudo, $tpConteudo){
         $genericos = new Genericos;
+        $url = 'https://nfe.ns.eti.br/util/preview/nfe';
 
         $genericos->gravarLinhaLog('[EMISSAO_NFE_INICIO]');
         $genericos->gravarLinhaLog('[DADOS_ENVIADOS]');
         $genericos->gravarLinhaLog($conteudo);
 
-        if ($tpConteudo == 'json'){
-            $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/json', 'https://nfe.ns.eti.br/util/preview/nfe');
-        }
-        else if ($tpConteudo == 'xml'){
-            $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/xml', 'https://nfe.ns.eti.br/util/preview/nfe');
-        }
-        else if ($tpConteudo == 'txt'){
-            $ret = $genericos->enviarConteudoParaAPI($conteudo, 'text/plain;charset=utf-8', 'https://nfe.ns.eti.br/util/preview/nfe');
-        }
-        else{
-            $ret = 'tpConteudo invalido';
+        switch($tpConteudo){
+            case 'json':
+                $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/json', $url);
+                break;
+            case 'xml':
+                $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/xml', $url);
+                break;
+            case 'txt':
+                $ret = $genericos->enviarConteudoParaAPI($conteudo, 'text/plain;charset=utf-8', $url);
+                break;
+            default:
+                $ret = 'tpConteudo invalido';
+                break;
         }
 
         $genericos->gravarLinhaLog('[DADOS_RETORNADOS]');

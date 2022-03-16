@@ -7,7 +7,7 @@ Utilizando a NS API, este exemplo - criado em PHP Laravel versão 8.x- possui fu
 + MDFe;
 + BPe;
 
-Obs.: Neste momento, apenas as funcionalidades para NFe estão disponíveis.
+Obs.: Neste momento, apenas as funcionalidades para NFe e CTe estão disponíveis.
 
 ## Primeiros passos:
 
@@ -71,7 +71,7 @@ Se houver algum erro, será retornado um campo contendo o retorno do método aon
 Confira um código para tratamento do retorno, no qual pegará as informações dispostas no JSON de Retorno disponibilizado:
 
 
-    $resposta = $NSSuite->emitirNFeSincrono($conteudo, $tpConteudo, $cnpjEmit, $tpDown, $tpAmb, $caminho, $exibeNaTela);
+    $retorno = $emissao->emitirNFeSincrono($conteudo, $tpConteudo, $cnpjEmit, $tpDown, $tpAmb, $caminho, $exibeNaTela);
 
     $emissaoStatus = $resposta['emissaoStatus'];
     $consultaStatus = $resposta['consultaStatus'];

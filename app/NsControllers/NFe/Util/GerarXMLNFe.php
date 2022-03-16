@@ -7,24 +7,27 @@ use App\NsControllers\Genericos\Genericos;
 class GerarXMLNFe{
     public function gerarXML($conteudo, $tpConteudo){
         $genericos = new Genericos;
+        $url = 'https://nfe.ns.eti.br/util/generatexml';
 
         $genericos->gravarLinhaLog('[GERAR_XML_NFE_INICIO]');
         $genericos->gravarLinhaLog('[DADOS_ENVIADOS]');
         $genericos->gravarLinhaLog($conteudo);
 
-        if ($tpConteudo == 'json'){
-            $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/json', 'https://nfe.ns.eti.br/util/generatexml');
+        switch($tpConteudo){
+            case 'json':
+                $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/json', $url);
+                break;
+            case 'xml':
+                $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/xml', $url);
+                break;
+            case 'txt':
+                $ret = $genericos->enviarConteudoParaAPI($conteudo, 'text/plain;charset=utf-8', $url);
+                break;
+            default:
+                $ret = 'tpConteudo invalido';
+                break;
         }
-        else if ($tpConteudo == 'xml'){
-            $ret = $genericos->enviarConteudoParaAPI($conteudo, 'application/xml', 'https://nfe.ns.eti.br/util/generatexml');
-        }
-        else if ($tpConteudo == 'txt'){
-            $ret = $genericos->enviarConteudoParaAPI($conteudo, 'text/plain;charset=utf-8', 'https://nfe.ns.eti.br/util/generatexml');
-        }
-        else{
-            $ret = 'tpConteudo invalido';
-        }
-
+        
         $genericos->gravarLinhaLog('[DADOS_RETORNADOS]');
         $genericos->gravarLinhaLog($ret);
         $genericos->gravarLinhaLog('[GERAR_XML_NFE_FIM]');
